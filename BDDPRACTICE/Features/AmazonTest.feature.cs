@@ -118,13 +118,14 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.GivenAsync("I am on the amazon home page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 8
- await testRunner.WhenAsync("I enter smart tv in the search bar and I click on the search button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.WhenAsync("I enter smart tv in the search bar \"acer 43 inch tv\"and I click on the search but" +
+                        "ton", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 9
- await testRunner.AndAsync("I selected a oneplus tv and I click on the tv", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("I selected a acer tv and I click on the tv and added to cart", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 10
- await testRunner.ThenAsync("I should see a list of tvs in the search results", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync("I checked whether tv added to kart or not", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
