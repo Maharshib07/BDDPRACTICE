@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Reqnroll;
@@ -17,25 +18,32 @@ namespace BDDPRACTICE.StepDefinitions
             Thread.Sleep(3000);
         }
 
-        [When("I enter smart tv in the search bar and I click on the search button")]
-        public void WhenIEnterSmartTvInTheSearchBarAndIClickOnTheSearchButton()
+        [When("I enter smart tv in the search bar {string}and I click on the search button")]
+        public void WhenIEnterSmartTvInTheSearchBarAndIClickOnTheSearchButton(string TVName)
         {
             IWebElement Searchbox = driver.FindElement(By.XPath("//input[@id='twotabsearchtextbox']"));
-            Searchbox.SendKeys("Oneplus 43inch tv");
+            Searchbox.SendKeys(TVName);
             Searchbox.SendKeys(Keys.Enter);
         }
 
-        [When("I selected a oneplus tv and I click on the tv")]
-        public void WhenISelectedAOneplusTvAndIClickOnTheTv()
+
+        [When("I selected a acer tv and I click on the tv and added to cart")]
+        public void WhenISelectedAAcerTvAndIClickOnTheTvAndAddedToCart()
         {
-            IWebElement OneplusTV43inch = driver.FindElement(By.XPath(""));
+            IWebElement OneplusTV43inch = driver.FindElement(By.XPath("//span[contains(text(),'Smart Google TV AR43UDIGU2875AT (Black)')]"));
+            OneplusTV43inch.Click();
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            driver.FindElement(By.XPath("(//input[@id='add-to-cart-button'])[2]")).Click();
         }
 
 
-        [Then("I should see a list of tvs in the search results")]
-        public void ThenIShouldSeeAListOfTvsInTheSearchResults()
+
+        [Then("I checked whether tv added to kart or not")]
+        public void ThenICheckedWhetherTvAddedToKartOrNot()
         {
-            throw new PendingStepException();
+            IWebElement Check = driver.FindElement(By.Name("proceedToRetailCheckout"));
+            Assert.IsTrue(Check.GetAttribute("name") == "proceedToRetailCheckout", "Item not added to cart");
         }
+
     }
 }
