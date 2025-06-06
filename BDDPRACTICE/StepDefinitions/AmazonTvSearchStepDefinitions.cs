@@ -9,7 +9,7 @@ namespace BDDPRACTICE.StepDefinitions
     [Binding]
     public class AmazonTvSearchStepDefinitions
     {
-        IWebDriver driver;
+        private IWebDriver driver;
         [Given("I am on the amazon home page")]
         public void GivenIAmOnTheAmazonHomePage()
         {
@@ -26,7 +26,6 @@ namespace BDDPRACTICE.StepDefinitions
             Searchbox.SendKeys(Keys.Enter);
         }
 
-
         [When("I selected a acer tv and I click on the tv and added to cart")]
         public void WhenISelectedAAcerTvAndIClickOnTheTvAndAddedToCart()
         {
@@ -36,13 +35,12 @@ namespace BDDPRACTICE.StepDefinitions
             driver.FindElement(By.XPath("(//input[@id='add-to-cart-button'])[2]")).Click();
         }
 
-
-
         [Then("I checked whether tv added to kart or not")]
         public void ThenICheckedWhetherTvAddedToKartOrNot()
         {
             IWebElement Check = driver.FindElement(By.Name("proceedToRetailCheckout"));
             Assert.IsTrue(Check.GetAttribute("name") == "proceedToRetailCheckout", "Item not added to cart");
+            driver.Dispose();
         }
 
     }
